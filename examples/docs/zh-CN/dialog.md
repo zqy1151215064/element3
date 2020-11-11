@@ -29,15 +29,17 @@ Dialog 弹出一个对话框，适合需要定制性更大的场景。
 </el-dialog>
 
 <script>
- import { ref, getCurrentInstance } from 'vue'
+import { ref } from 'vue'
+  import { useMsgbox } from 'element3'
   export default {
-    setup() {
-      const dialogVisible = ref(false)
-      const handleClose = (done) => {
-        getCurrentInstance.ctx
-          .$confirm('确认关闭？')
-          .then((_) => {
-            done()
+    setup(){
+      let {confirm} = useMsgbox()
+      let dialogVisible = ref(false)
+
+      function handleClose(done){
+        confirm('确认关闭？')
+          .then(_ => {
+            done();
           })
           .catch((_) => {})
       }
@@ -58,25 +60,10 @@ Dialog 弹出一个对话框，适合需要定制性更大的场景。
 
 ### 自定义内容
 
-Dialog 组件的内容可以是任意的，甚至可以是表格或表单，下面是应用了 Element Table 和 Form 组件的两个样例。
+Dialog 组件的内容可以是任意的，甚至可以是表单，下面是应用了 Form 组件的样例。
 
 :::demo
 ```html
-<!-- Table -->
-<el-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</el-button>
-
-<el-dialog 
-  title="收货地址" 
-  :visible.sync="dialogTableVisible"
-  v-model:visible="dialogTableVisible"
->
-  <el-table :data="gridData">
-    <el-table-column property="date" label="日期" width="150"></el-table-column>
-    <el-table-column property="name" label="姓名" width="200"></el-table-column>
-    <el-table-column property="address" label="地址"></el-table-column>
-  </el-table>
-</el-dialog>
-
 <!-- Form -->
 <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button>
 
@@ -103,29 +90,10 @@ Dialog 组件的内容可以是任意的，甚至可以是表格或表单，下�
 </el-dialog>
 
 <script>
-import { ref, getCurrentInstance } from 'vue'
-
+import { reactive, toRefs } from 'vue'
   export default {
-    data() {
-      return {
-        gridData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }],
-        dialogTableVisible: false,
+    setup(){
+      const state = reactive({
         dialogFormVisible: false,
         form: {
           name: '',
@@ -138,7 +106,9 @@ import { ref, getCurrentInstance } from 'vue'
           desc: ''
         },
         formLabelWidth: '120px'
-      };
+      })
+
+      return {...toRefs(state)}
     }
   };
 </script>
@@ -170,7 +140,7 @@ import { ref, getCurrentInstance } from 'vue'
   </el-dialog>
 
 <script>
- import { ref } from 'vue'
+import { ref } from 'vue'
   export default {
     setup() {
       const outerVisible = ref(false)
@@ -212,7 +182,7 @@ import { ref, getCurrentInstance } from 'vue'
 </el-dialog>
 
 <script>
- import { ref } from 'vue'
+import { ref } from 'vue'
   export default {
     setup() {
       const centerDialogVisible = ref(false)
