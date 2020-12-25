@@ -3,7 +3,7 @@ import ElCollapseTransition from './transitions/collapse-transition'
 // Basic
 import ElRow from '../packages/row'
 import ElCol from '../packages/col'
-import ElContainer from '../packages/container'
+import { ElContainer } from './components/Container'
 import ElHeader from '../packages/header'
 import ElFooter from '../packages/footer'
 import ElAside from '../packages/aside'
@@ -13,7 +13,7 @@ import { ElButton } from './components/Button'
 import ElButtonGroup from '../packages/button-group'
 import { ElLink } from './components/Link'
 // Form
-import ElRadio from '../packages/radio'
+import { ElRadio } from './components/Radio'
 import ElRadioButton from '../packages/radio-button'
 import ElRadioGroup from '../packages/radio-group'
 import ElCheckbox from '../packages/checkbox'
@@ -26,7 +26,7 @@ import ElOption from '../packages/option'
 import ElOptionGroup from '../packages/option-group'
 import ElCascader from '../packages/cascader'
 import ElCascaderPanel from '../packages/cascader-panel'
-import ElSwitch from '../packages/switch'
+import { ElSwitch } from './components/Switch'
 import ElSlider from '../packages/slider'
 // import ElTimePicker from '../packages/time-picker'
 // import ElTimeSelect from '../packages/time-select'
@@ -40,22 +40,22 @@ import ElFormItem from '../packages/form-item'
 // Data
 import ElTable from '../packages/table'
 import ElTableColumn from '../packages/table-column'
-import ElTag from '../packages/tag'
+import { ElTag } from './components/Tag'
 import ElProgress from '../packages/progress'
 import ElTree from '../packages/tree'
 import ElPagination from '../packages/pagination'
-import ElBadge from '../packages/badge'
-import ElAvatar from '../packages/avatar'
+import { ElBadge } from './components/Badge'
+import { ElAvatar } from './components/Avatar'
 // Notice
 import ElAlert from '../packages/alert'
 
 import ElLoading, { useLoading } from '../packages/loading'
 
-import { Message } from '../packages/message'
+import { Message } from './components/Message'
 
 import ElMessageBox, { useMsgbox } from '../packages/message-box'
 
-import ElNotification, { useNotify } from '../packages/notification'
+import { Notification } from './components/Notification'
 // Navigation
 import ElMenu from '../packages/menu'
 import ElMenuItem from '../packages/menu-item'
@@ -83,7 +83,7 @@ import ElCollapse from '../packages/collapse'
 import ElCollapseItem from '../packages/collapse-item'
 import ElTimeline from '../packages/timeline'
 import ElTimelineItem from '../packages/timeline-item'
-import ElDivider from '../packages/divider'
+import { ElDivider } from './components/Divider'
 import ElCalendar from '../packages/calendar'
 import ElImage from '../packages/image'
 import ElBacktop from '../packages/backtop'
@@ -193,7 +193,7 @@ function applyOptions(app) {
   app.config.globalProperties.$alert = ElMessageBox.service.alert
   app.config.globalProperties.$confirm = ElMessageBox.service.confirm
   app.config.globalProperties.$prompt = ElMessageBox.service.prompt
-  app.config.globalProperties.$notify = ElNotification.service
+  app.config.globalProperties.$notify = Notification
   app.config.globalProperties.$message = Message
 }
 
@@ -286,7 +286,7 @@ export {
   Message,
   useLoading,
   useMsgbox,
-  useNotify,
+  Notification,
   install,
   setupGlobalOptions
 }
